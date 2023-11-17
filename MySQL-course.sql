@@ -94,7 +94,116 @@ CREATE TABLE cats2
 INSERT INTO cats2(age) VALUES(2);
 INSERT INTO cats2() VALUES();
 SELECT * FROM cats2;
-    
+
+-- Combine NOT NULL and DEFAULT:
+CREATE TABLE cats3(
+name VARCHAR(20) NOT NULL DEFAULT 'unnamed',
+age INT NOT NULL DEFAULT 99
+);
+DESC cats3;
+INSERT INTO cats3() VALUES();
+SELECT * FROM cats3;
+
+-- 49. Introducing Primary Keys
+CREATE TABLE unique_cats (
+	cat_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL
+);
+DESC unique_cats;
+INSERT INTO unique_cats(cat_id, name, age) VALUES (1, 'bingo', 2);
+SELECT * FROM unique_cats;
+
+-- Note: Primary Key cannot be NULL.
+-- So specificing NOT NULL to a column with Primary Key is REDUNDANT. 
+
+-- 51. Working with AUTO_INCREMENT
+-- setting AUTO_INCREMENT to your primary key fields. 
+-- to automatically increment
+CREATE TABLE unique_cats(
+cat_id INT AUTO_INCREMENT, 
+name VARCHAR(100),
+age INT, 
+PRIMARY KEY (cat_id)
+);
+DESC unique_cats;
+INSERT INTO unique_cats(name, age) VALUES ('Boba', 3);
+SELECT * FROM unique_cats;
+INSERT INTO unique_cats(name, age) VALUES ('Boba', 3);
+INSERT INTO unique_cats(name, age) VALUES ('Boba', 3);
+INSERT INTO unique_cats(name, age) VALUES ('Boba', 3);
+SELECT * FROM unique_cats;
+INSERT INTO unique_cats() VALUES ();
+INSERT INTO unique_cats() VALUES ();
+SELECT * FROM unique_cats;
+
+-- 53. create Table / Insert Exercise
+CREATE TABLE Employees(
+id INT AUTO_INCREMENT PRIMARY KEY, 
+last_name VARCHAR(100) NOT NULL,
+first_name VARCHAR(100) NOT NULL,
+middle_name VARCHAR(100),
+age INT NOT NULL, 
+current_status VARCHAR(100) NOT NULL DEFAULT 'employed'
+);
+DESC Employees;
+INSERT INTO Employees (first_name, last_name, age)
+	VALUES ('Thomas', 'Adams', 20);
+    SELECT * FROM Employees;
+
+-- Section 5: CRUD Basics
+DROP TABLE cats;
+CREATE TABLE cats (
+    cat_id INT AUTO_INCREMENT,
+    name VARCHAR(100),
+    breed VARCHAR(100),
+    age INT,
+    PRIMARY KEY (cat_id)
+); 
+
+DESC cats;
+-- Insert some cats:
+
+INSERT INTO cats(name, breed, age) 
+VALUES ('Ringo', 'Tabby', 4),
+       ('Cindy', 'Maine Coon', 10),
+       ('Dumbledore', 'Maine Coon', 11),
+       ('Egg', 'Persian', 4),
+       ('Misty', 'Tabby', 13),
+       ('George Michael', 'Ragdoll', 9),
+       ('Jackson', 'Sphynx', 7);
+SELECT * FROM cats;
+
+-- 59. SELECT
+-- SELECT * FROM 
+-- * means 'all the'. meaning select/show me all the columns from the table
+-- we can specificy the column from the table. if multiple, seperate with comma.
+SELECT * FROM cats;
+SELECT age FROM cats;
+SELECT name, age FROM cats;
+
+-- 61. WHERE clause
+-- to narrow down the rows that we want to work with
+-- Note: dont have to SELECT the columns that we want to work with. 
+SELECT * FROM cats WHERE age=4;
+SELECT name FROM cats WHERE age=4;
+SELECT * FROM cats WHERE name='egg'; -- case insensitive. Egg or Egg , still give the same result
+
+-- 63. Rapid Fire Exercise: Write the query that select teh following
+-- Exercise 1:
+SELECT cat_id FROM cats;
+-- Exercise 2:
+SELECT name, breed FROM cats;
+-- Exercise 3:
+SELECT name, age FROM cats WHERE breed='Tabby';
+-- Exercise 4;
+SELECT cat_id, age FROM cats WHERE cat_id=age;
+
+-- 66. Aliases
+-- Easier to read results
+-- Temporary only for the query, it do not actually changethe column name
+SELECT cat_id AS id, name FROM cats;
+  
     
 
 
