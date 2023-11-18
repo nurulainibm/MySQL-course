@@ -203,6 +203,13 @@ SELECT cat_id, age FROM cats WHERE cat_id=age;
 -- Easier to read results
 -- Temporary only for the query, it do not actually changethe column name
 SELECT cat_id AS id, name FROM cats;
+
+--68. Using UPDATE
+UPDATE cats SET breed='Shorthair' WHERE breed='Tabby';
+UPDATE cats SET age=14 WHERE name='Misty';
+SELECT * FROM cats;
+
+
   
     
 
