@@ -204,11 +204,37 @@ SELECT cat_id, age FROM cats WHERE cat_id=age;
 -- Temporary only for the query, it do not actually changethe column name
 SELECT cat_id AS id, name FROM cats;
 
---68. Using UPDATE
-UPDATE cats SET breed='Shorthair' WHERE breed='Tabby';
-UPDATE cats SET age=14 WHERE name='Misty';
+-- 68. Using UPDATE
+-- Update existing rows in a table
+-- WHERE: to target where we are updating
+USE pet_shop;
+ UPDATE cats SET breed='Tabby' WHERE breed='Bengal';
+ SELECT * FROM cats WHERE name='Misty';
+ UPDATE cats SET age=14 WHERE name='Misty';
 SELECT * FROM cats;
 
+-- updating multiple columns at once:
+SELECT * FROM employees;
+UPDATE employees SET current_status='laid-off', last_name='who cares';
+
+-- 71. UPDATE Exercise
+SELECT*FROM cats;
+UPDATE cats SET name = 'Jack' WHERE name = 'Jackson';
+UPDATE cats SET breed='British Shorthair' WHERE name = 'Ringo';
+UPDATE cats SET age = 12 WHERE breed='Maine Coon';
+SELECT * FROM cats;
+
+-- 74. DELETE
+-- DELETE FROM cats; -- will delete all rows from the table. empty table with no rows..
+DELETE FROM cats WHERE name='egg';
+SELECT * FROM cats;
+SELECT * FROM employees;
+
+-- 76. DELETE Exercise
+SELECT * FROM cats;
+DELETE FROM cats WHERE age=4;
+DELETE FROM cats WHERE cat_id = age;
+DELETE FROM cats;
 
   
     
